@@ -1,45 +1,46 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
+  import AddListButton from "./lib/AddListButton.svelte";
+import Counter from "./lib/Counter.svelte";
+
+  const lists = [
+    ["Liste1", ["Item1", "Item2"]],
+    ["Liste2", ["Item1.1", "Item1.2"]],
+  ];
 </script>
 
-<main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank"> 
-      <img src="/vite.svg" class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank"> 
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
+<main class="w-screen min-h-screen flex flex-col">
+  <div class="flex justify-between bg-slate-700 py-3">
+    <h1 class="px-3 text-slate-200 font-semibold text-3xl">ToDos</h1>
+    <input class="bg-slate-200 hover:bg-slate-100 py-1 rounded-sm" />
+    <div />
   </div>
 
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
+  <div class="flex flex-grow text-left">
+    <div class="flex flex-col bg-slate-200 w-44 p-3">
+      <ul class="flex-grow">
+        {#each lists as list}
+          <li
+            class="hover:bg-slate-300 rounded-sm cursor-pointer py-1 px-2 my-2"
+          >
+            {list[0]}
+          </li>
+        {/each}
+      </ul>
 
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
+      <AddListButton/>
+    </div>
+
+    <div class="p-3 flex-grow">
+      <h1 class="text-2xl font-semibold px-2 py-2">Listen Name</h1>
+      <ul class="mt-2">
+        <li class="hover:bg-slate-100 rounded-sm cursor-pointer p-2">
+          <!-- click -> false/true disabled -->
+          <input value="Aufgabe1" disabled class="bg-transparent w-full">
+        </li>
+      </ul>
+    </div>
+  </div>
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
 </style>
