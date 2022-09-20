@@ -16,7 +16,7 @@
       {#if list.edit}
         <input
           bind:value={list.name}
-          class="bg-transparent w-full py-1 px-2"
+          class="bg-transparent w-full py-1 px-2 outline-none"
           on:keydown={(k) => {
             if (k.key === "Enter" || k.key === "Escape") {
               list.edit = false;
@@ -38,8 +38,11 @@
           class="flex flex-col justify-center mx-1 group-hover:visible invisible"
         >
           <div class="flex">
-            <TrashIcon />
+            <div class="hover:text-slate-500">
+              <TrashIcon />
+            </div>
             <div
+              class="hover:text-slate-500"
               on:click={() => {
                 lists.forEach((l) => (l.edit = false));
                 list.edit = true;

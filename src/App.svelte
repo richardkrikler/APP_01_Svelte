@@ -1,9 +1,9 @@
 <script>
-  import { List } from './lib/List'
-  import { lists, activeList } from './stores'
-  import ListList from './lib/ListList.svelte'
-  import TaskList from './lib/TaskList.svelte'
-  import AddListButton from './lib/AddListButton.svelte'
+  import { List } from "./lib/List";
+  import { lists, activeList } from "./stores";
+  import ListList from "./lib/ListList.svelte";
+  import TaskList from "./lib/TaskList.svelte";
+  import AddListButton from "./lib/AddListButton.svelte";
 </script>
 
 <main class="w-screen min-h-screen flex flex-col">
@@ -19,8 +19,8 @@
 
       <AddListButton
         callback={() => {
-          $lists.push(new List(''))
-          console.log($lists)
+          $lists.push(new List(""));
+          console.log($lists);
         }}
       />
     </div>

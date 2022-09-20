@@ -1,3 +1,5 @@
+import { Task } from "./Task"
+
 export class List {
   constructor(name) {
     this.id = Math.random()
@@ -11,7 +13,7 @@ export class List {
   }
 
   addTask(task) {
-    this.tasks.push(task)
+    this.tasks.push(new Task(task))
   }
 
   removeTask(task) {
