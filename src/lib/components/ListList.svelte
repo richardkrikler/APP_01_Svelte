@@ -3,6 +3,7 @@
   import CheckIcon from "../icons/CheckIcon.svelte";
   import EditIcon from "../icons/EditIcon.svelte";
   import TrashIcon from "../icons/TrashIcon.svelte";
+  import { navigate } from "svelte-routing";
 </script>
 
 <ul class="flex-grow">
@@ -29,15 +30,21 @@
       {:else}
         <button
           class="w-full py-1 px-2 text-left"
-          on:click={() => ($activeListId = list.id)}>{list.name}</button
+          on:click={() => {
+            $activeListId = list.id;
+            navigate("/");
+          }}>{list.name}</button
         >
         <div
           class="flex flex-col justify-center mx-1 group-hover:visible invisible"
         >
           <div class="flex">
-            <div class="hover:text-slate-500" on:click={() => {
-              lists.update(ll => ll.filter(l => l.id !== list.id))
-            }}>
+            <div
+              class="hover:text-slate-500"
+              on:click={() => {
+                lists.update((ll) => ll.filter((l) => l.id !== list.id));
+              }}
+            >
               <TrashIcon />
             </div>
             <div

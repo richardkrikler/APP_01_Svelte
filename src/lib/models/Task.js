@@ -1,6 +1,8 @@
+import makeId from "./MakeId";
+
 export class Task {
   constructor(title) {
-    this.id = Math.random();
+    this.id = makeId();
     this.title = title;
   }
 }

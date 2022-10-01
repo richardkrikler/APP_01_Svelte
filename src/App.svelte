@@ -1,9 +1,9 @@
 <script>
-  import { List } from "./lib/List";
+  import { List } from "./lib/models/List";
   import { lists } from "./stores";
   import ListList from "./lib/components/ListList.svelte";
-  import TaskList from "./lib/components/TaskList.svelte";
   import AddListButton from "./lib/components/AddListButton.svelte";
+  import Router from './routes/index.svelte'
 </script>
 
 <main class="w-screen min-h-screen flex flex-col">
@@ -18,12 +18,13 @@
       <ListList />
 
       <AddListButton
-        callback={() => lists.update(l => [...l, new List("", true)])}
+        callback={() => lists.update((l) => [...l, new List("", true)])}
       />
     </div>
 
     <div class="p-3 flex-grow">
-      <TaskList />
+      <Router />
+      <!-- <TaskList /> -->
     </div>
   </div>
 </main>

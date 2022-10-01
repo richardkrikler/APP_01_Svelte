@@ -1,8 +1,9 @@
 import { Task } from "./Task";
+import makeId from "./MakeId";
 
 export class List {
   constructor(name, edit = false) {
-    this.id = Math.random();
+    this.id = makeId();
     this.name = name;
     this.edit = edit;
     this.tasks = [];
