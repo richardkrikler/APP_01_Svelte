@@ -1,15 +1,12 @@
 <script>
-  import { activeList, lists as listsState } from "../stores.js";
-  import CheckIcon from "./icons/CheckIcon.svelte";
-  import EditIcon from "./icons/EditIcon.svelte";
-  import TrashIcon from "./icons/TrashIcon.svelte";
-
-  $: lists = $listsState;
-  $: console.log($listsState);
+  import { activeListId, lists } from "../../stores.js";
+  import CheckIcon from "../icons/CheckIcon.svelte";
+  import EditIcon from "../icons/EditIcon.svelte";
+  import TrashIcon from "../icons/TrashIcon.svelte";
 </script>
 
 <ul class="flex-grow">
-  {#each lists as list}
+  {#each $lists as list}
     <li
       class="list group bg-slate-200 hover:bg-slate-300 rounded-sm cursor-pointer my-3.5 flex"
     >
@@ -32,20 +29,24 @@
       {:else}
         <button
           class="w-full py-1 px-2 text-left"
-          on:click={() => ($activeList = list.id)}>{list.name}</button
+          on:click={() => ($activeListId = list.id)}>{list.name}</button
         >
         <div
           class="flex flex-col justify-center mx-1 group-hover:visible invisible"
         >
           <div class="flex">
-            <div class="hover:text-slate-500">
+            <div class="hover:text-slate-500" on:click={() => {
+              lists.update(ll => ll.filter(l => l.id !== list.id))
+            }}>
               <TrashIcon />
             </div>
             <div
               class="hover:text-slate-500"
               on:click={() => {
-                lists.forEach((l) => (l.edit = false));
-                list.edit = true;
+                lists.update((ll) => {
+                  ll.forEach((l) => (l.edit = l.id === list.id ? true : false));
+                  return ll;
+                });
               }}
             >
               <EditIcon />

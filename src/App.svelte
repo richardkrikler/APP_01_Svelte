@@ -1,9 +1,9 @@
 <script>
   import { List } from "./lib/List";
-  import { lists, activeList } from "./stores";
-  import ListList from "./lib/ListList.svelte";
-  import TaskList from "./lib/TaskList.svelte";
-  import AddListButton from "./lib/AddListButton.svelte";
+  import { lists } from "./stores";
+  import ListList from "./lib/components/ListList.svelte";
+  import TaskList from "./lib/components/TaskList.svelte";
+  import AddListButton from "./lib/components/AddListButton.svelte";
 </script>
 
 <main class="w-screen min-h-screen flex flex-col">
@@ -18,15 +18,12 @@
       <ListList />
 
       <AddListButton
-        callback={() => {
-          $lists.push(new List(""));
-          console.log($lists);
-        }}
+        callback={() => lists.update(l => [...l, new List("", true)])}
       />
     </div>
 
     <div class="p-3 flex-grow">
-      <TaskList listId={$activeList} />
+      <TaskList />
     </div>
   </div>
 </main>

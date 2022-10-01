@@ -1,5 +1,5 @@
 <script>
-  import AddIcon from './icons/AddIcon.svelte'
+  import AddIcon from '../icons/AddIcon.svelte'
   export let callback
 </script>
 
