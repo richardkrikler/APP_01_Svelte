@@ -4,6 +4,10 @@
   import EditIcon from "../icons/EditIcon.svelte";
   import TrashIcon from "../icons/TrashIcon.svelte";
   import { navigate } from "svelte-routing";
+
+  $: if ($activeListId) {
+    navigate("/");
+  }
 </script>
 
 <ul class="flex-grow">
@@ -31,7 +35,7 @@
         <button
           class="w-full py-1 px-2 text-left"
           on:click={() => {
-            $activeListId = list.id;
+            activeListId.update(() => list.id);
             navigate("/");
           }}>{list.name}</button
         >
