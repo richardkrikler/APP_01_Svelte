@@ -3,10 +3,10 @@
   import CheckIcon from "../icons/CheckIcon.svelte";
   import EditIcon from "../icons/EditIcon.svelte";
   import TrashIcon from "../icons/TrashIcon.svelte";
-  import { navigate } from "svelte-routing";
+  import { navigateTo } from 'svelte-router-spa'
 
   $: if ($activeListId) {
-    navigate("/");
+    navigateTo('/')
   }
 </script>
 
@@ -36,7 +36,7 @@
           class="w-full py-1 px-2 text-left"
           on:click={() => {
             activeListId.update(() => list.id);
-            navigate("/");
+            navigateTo('/')
           }}>{list.name}</button
         >
         <div

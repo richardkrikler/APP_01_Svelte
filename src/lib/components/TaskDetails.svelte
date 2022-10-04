@@ -1,14 +1,15 @@
 <script>
-  import { navigate } from "svelte-routing";
+  import { navigateTo } from 'svelte-router-spa'
   import { lists, activeListId } from "../../stores";
   import BackIcon from "../icons/BackIcon.svelte";
   import ClearIcon from "../icons/ClearIcon.svelte";
-  export let id = "";
+  export let currentRoute;
+  export let id = currentRoute.namedParams.id;
 
   $: listIndex = $lists.findIndex((l) => l.id === $activeListId);
   $: console.log(listIndex);
   $: if (listIndex < 0) {
-    navigate("/");
+    navigateTo('/')
   }
   $: list = $lists[listIndex];
   $: taskIndex =
@@ -18,7 +19,7 @@
 
 <div class="flex">
   <div class="mr-1 flex cursor-pointer hover:text-slate-500"
-  on:click={() => navigate('/')}>
+  on:click={() => navigateTo('/')}>
     <BackIcon classes="w-5"/>
   </div>
   <h1 class="text-2xl font-semibold px-2 py-2">{list.name}</h1>

@@ -1,5 +1,5 @@
 <script>
-  import { navigate } from "svelte-routing";
+  import { navigateTo } from 'svelte-router-spa'
   import { lists, activeListId } from "../../stores";
   import AddIcon from "../icons/AddIcon.svelte";
   import TrashIcon from "../icons/TrashIcon.svelte";
@@ -65,7 +65,7 @@
   {#each list.tasks as task}
     <li
       class="task group hover:bg-slate-200 bg-slate-100 rounded-sm cursor-pointer p-2 my-3 flex"
-      on:click={() => navigate('/taskdetail/' + task.id)}
+      on:click={() => navigateTo('/taskdetails/' + task.id)}
     >
       <p class="cursor-pointer w-full">{task.title}</p>
       <div
