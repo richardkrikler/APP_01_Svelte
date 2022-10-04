@@ -7,7 +7,6 @@
   export let id = currentRoute.namedParams.id;
 
   $: listIndex = $lists.findIndex((l) => l.id === $activeListId);
-  $: console.log(listIndex);
   $: if (listIndex < 0) {
     navigateTo('/')
   }
